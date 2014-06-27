@@ -82,11 +82,33 @@ namespace Week2CodeChalenge
             int numVowels = 0;
             int numCons = 0;
             int specChars = 0;
-            for (int i = 0; i < input.Length; i++)
-            
+            var numChar = input.Length;
+            var numCharSplit = input.Split(' ');
+            var numWords = numCharSplit.Length;
 
+            var biggestWord = "";
+            var shortestWord = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            
+            
+            for (int i = 0; i < numCharSplit.Length; i++)
             {
-                
+
+                if (numCharSplit[i].Length > biggestWord.Length)
+                {
+                    biggestWord = numCharSplit[i];
+                }
+            }
+
+            for (int i = 0; i < numCharSplit.Length; i++)
+            {
+                if (numCharSplit[i].Length < shortestWord.Length)
+                {
+                    shortestWord = numCharSplit[i];
+                }
+            }
+            
+            for (int i = 0; i < input.Length; i++)
+            {   
                 //grrabing one letter from the string
                 // by it's index
                 char letter = input[i];
@@ -97,6 +119,7 @@ namespace Week2CodeChalenge
                     numVowels = numVowels + 1;
                 }
                 else if (letter == '.' || letter == ' ' || letter == ',')
+                //number of special characters
                 {
                     specChars = specChars + 1;
                 }
@@ -105,7 +128,7 @@ namespace Week2CodeChalenge
                 {
                     numCons = numCons + 1;
                 }
-                //number of special characters
+                
             }
 
             //output number of vowels, cons, 
@@ -113,8 +136,8 @@ namespace Week2CodeChalenge
             Console.WriteLine("# of vowels: " + numVowels);
             Console.WriteLine("# of consonants: " + numCons);
             Console.WriteLine("# of special characters: " + specChars);
-            Console.WriteLine("Longest word: ");
-            Console.WriteLine("Shortest word: ");
+            Console.WriteLine("Shortest word: " + shortestWord);
+            Console.WriteLine("Longest word: " + biggestWord);
         }
     }
 }
